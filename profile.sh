@@ -3,12 +3,11 @@
 export HISTSIZE=100000
 export HISTFILESIZE=100000
 
-export PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\033[0m$(__git_ps1)\033[0m\$ '
-
-alias rtest="ruby -I test"
 alias brb="bundle exec ruby"
 alias brk="bundle exec rake"
-alias brbtest="bundle exec ruby -I test"
+
+# http://askubuntu.com/questions/65096/how-to-clean-previous-kernels-after-update
+alias remove-outdated-kernels="dpkg -l 'linux-*' | sed '/^ii/!d;/'\"$(uname -r | sed \"s/\(.*\)-\([^0-9]\+\)/\1/\")\"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | xargs sudo apt-get -y purge"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
